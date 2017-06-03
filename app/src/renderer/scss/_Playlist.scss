@@ -1,0 +1,278 @@
+.grid-item-playlist {
+    grid-area: playlist;
+}
+
+#playlist {
+    overflow: auto;
+
+    .info {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 200px;
+        padding: 20px;
+        overflow: hidden;
+        z-index: 3;
+        background: #fff;
+        border-bottom: 1px solid $border;
+
+        .title {
+            font-size: 22px;
+            font-weight: normal;
+            margin-bottom: 10px;
+            width: 100%;
+            height: 1em;
+            border: none;
+        }
+
+        .dateCreated {
+            color: $grayText;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .summary {
+            display: block;
+            width: 100%;
+            line-height: 1.4;
+            height: 1.4em * 3;
+            resize: none;
+            border: none;
+            margin-bottom: 10px;
+        }
+
+        input, textarea {
+            background: $lightBg;
+            box-shadow: 0 0 0 5px $lightBg;
+        }
+
+        .play {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: #fff;
+            border: 1px solid $border;
+            border-radius: 3px;
+            padding: 5px 10px;
+
+            &:focus {
+                border-color: var(--primary-color);
+            }
+
+            .material-icons {
+                font-size: 18px;
+                color: var(--primary-color);
+                vertical-align: -4px;
+            }
+        }
+    }
+
+    .trackListWrap {
+        margin-top: 200px;
+
+        &.dragging {
+            box-shadow: inset 0 0 30px rgba(#000, 0.3);
+
+            .track.selected {
+                opacity: 0.5;
+            }
+
+            .drop-placeholder {
+                display: block;
+            }
+        }
+    }
+
+    .trackList,
+    .emptyTip {
+        min-height: calc(100vh - 260px);
+    }
+
+    .trackList {
+        list-style: none;
+
+        .track {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            cursor: pointer;
+            color: $grayText;
+            margin-bottom: -1px;
+
+            &:not(:last-child):after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 36px;
+                right: 0;
+                height: 1px;
+                background: $border;
+                z-index: 1;
+            }
+
+            &:hover {
+                background: $lightBg;
+            }
+
+            &.selected {
+                background: var(--primary-color);
+                color: rgba(#fff, .7);
+                z-index: 2;
+
+                &:after {
+                    display: none;
+                }
+
+                .title {
+                    color: #fff;
+                }
+
+                .no {
+                    .bar {
+                        background: #fff;
+                    }
+                }
+            }
+
+            &.current {
+                .no {
+                    &:after {
+                        display: none;
+                    }
+
+                    .bar {
+                        display: block;
+                    }
+                }
+
+                .title {
+                    font-weight: bold;
+                }
+            }
+
+            &.playing {
+                .no {
+                    .bar {
+                        animation-play-state: running;
+                    }
+                }
+            }
+
+            &.invalid {
+                .title {
+                    color: inherit;
+                }
+            }
+
+            &.ghost {
+                opacity: .5;
+            }
+        }
+
+        .drop-placeholder {
+            position: relative;
+            z-index: 3;
+            height: 3px;
+            margin-bottom: -3px;
+            background: var(--primary-color);
+            display: none;
+
+            &:last-child {
+                margin-top: -3px;
+                margin-bottom: 0;
+            }
+        }
+
+        .no {
+            position: relative;
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            line-height: 16px;
+            font-size: 12px;
+            text-align: center;
+            margin-right: 10px;
+
+            &:after {
+                content: attr(data-no);
+            }
+
+            .bar {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 3px;
+                height: 100%;
+                background: var(--primary-color);
+                transform-origin: 50% 100%;
+                animation: playing .5s linear infinite paused;
+                display: none;
+
+                &:nth-child(1) {
+                    left: 1px;
+                    height: 50%;
+                }
+
+                &:nth-child(2) {
+                    left: 6px;
+                    height: 100%;
+                    animation-delay: -.2s;
+                }
+
+                &:nth-child(3) {
+                    left: 11px;
+                    height: 70%;
+                    animation-delay: -.4s;
+                }
+            }
+        }
+
+        .bd {
+            flex: 1;
+        }
+
+        .title {
+            font-weight: normal;
+            color: $text;
+        }
+
+        .description {
+            margin-left: .5em;
+        }
+
+        .duration {
+            font-size: 12px;
+        }
+    }
+
+    .emptyTip {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+
+        .material-icons {
+            font-size: 72px;
+            color: rgba(#000, .2);
+        }
+
+        strong {
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 12px;
+            color: $grayText;
+            cursor: pointer;
+        }
+    }
+}
+
+@keyframes playing {
+    50% {
+        transform: scaleY(0.5);
+    }
+}

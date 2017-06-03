@@ -1,0 +1,18 @@
+{
+  "name": "wed-player",
+  "productName": "WedPlayer",
+  "version": "0.0.0",
+  "description": "一款基于 Electron + Vue 的本地音乐播放器",
+  "main": "./dist/main.js",
+  "dependencies": {
+    "babel-runtime": "^6.23.0",
+    "jsmediatags": "^3.4.0",
+    "musicmetadata": "^2.0.5",
+    "node-vibrant": "^3.0.0-alpha.2",
+    "vue": "^2.1.10",
+    "vue-electron": "^1.0.6",
+    "vuex": "^2.3.1"
+  },
+  "devDependencies": {},
+  "author": "小影 <cople7@gmail.com>"
+}

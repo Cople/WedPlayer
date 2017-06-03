@@ -1,0 +1,116 @@
+#settings-panel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(#fff, .3);
+    backdrop-filter: blur(7px);
+    z-index: 100;
+}
+
+#settings-dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: 300px;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    box-shadow: 0 0 0 1px rgba(#000, .07), 0 7px 22px rgba(#000, .2);
+    border-radius: 5px;
+    overflow: hidden;
+
+    .hd {
+        padding: 20px;
+        background: var(--primary-color);
+        color: #fff;
+        overflow: hidden;
+
+        .title {
+            float: left;
+            font-size: 1em;
+        }
+
+        .close {
+            float: right;
+            font-size: 16px;
+            opacity: .5;
+            margin-top: -1px;
+            cursor: pointer;
+        }
+    }
+
+    .bd {
+        margin: 30px;
+
+        p {
+            margin-bottom: 20px;
+
+            > * {
+                vertical-align: middle;
+            }
+        }
+
+        input {
+            &[type='checkbox'] {
+                display: none;
+
+                &:checked {
+                    ~ .check {
+                        display: none;
+                    }
+
+                    ~ .checked {
+                        display: inline-block;
+                    }
+                }
+            }
+            
+            &[type='text'] {
+                margin-left: 1em;
+                width: 220px;
+            }
+        }
+
+        .check {
+            display: inline-block;
+        }
+
+        .checked {
+            display: none;
+        }
+
+        .material-icons {
+            font-size: 18px;
+            color: var(--primary-color);
+            vertical-align: middle;
+        }
+
+        .descriptionFormatList {
+            margin-left: 7.2em;
+            margin-top: -10px;
+            list-style: none;
+
+            dt,
+            dd {
+                float: left;
+                font-size: 12px;
+                margin-bottom: 5px;
+            }
+
+            dt {
+                clear: left;
+            }
+
+            dd {
+                overflow: hidden;
+
+                &:before {
+                    content: ' - ';
+                    white-space: pre;
+                }
+            }
+        }
+    }
+}
